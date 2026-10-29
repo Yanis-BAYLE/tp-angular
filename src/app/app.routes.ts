@@ -13,4 +13,9 @@ export const routes: Routes = [
     path: 'sensor',
     loadComponent: () => import('./components/sensor/sensor').then((m) => m.Sensor),
   },
+  {
+    path: 'productivity-tracker',
+    loadComponent: () =>
+      import('./productivity-tracker/productivity-tracker').then((m) => m.ProductivityTracker),
+  },
 ];

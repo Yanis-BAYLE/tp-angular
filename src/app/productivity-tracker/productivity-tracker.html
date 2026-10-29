@@ -1,0 +1,11 @@
+<section aria-labelledby="tracker-title">
+  <h2 id="tracker-title">Productivité du jour</h2>
+
+  <p>
+    Progression : <strong>{{ progressPercentage() }} %</strong>
+  </p>
+  <p role="status" aria-live="polite">{{ message() }}</p>
+
+  <button type="button" (click)="addTask()" [disabled]="goalReached()">+1 Tâche complétée</button>
+  <button type="button" (click)="reset()">Réinitialiser</button>
+</section>
