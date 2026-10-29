@@ -24,7 +24,7 @@ export class ProductivityTracker {
     }
   });
 
-  addTask(): void {
+  incrementTask(): void {
     this.completedTasks.update((n) => n + 1);
   }
 

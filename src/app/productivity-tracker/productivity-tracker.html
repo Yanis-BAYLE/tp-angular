@@ -4,8 +4,15 @@
   <p>
     Progression : <strong>{{ progressPercentage() }} %</strong>
   </p>
+  <progress
+    [value]="progressPercentage()"
+    max="100"
+    aria-label="Progression de l'objectif quotidien"
+  ></progress>
   <p role="status" aria-live="polite">{{ message() }}</p>
 
-  <button type="button" (click)="addTask()" [disabled]="goalReached()">+1 Tâche complétée</button>
+  <button type="button" (click)="incrementTask()" [disabled]="goalReached()">
+    +1 Tâche complétée
+  </button>
   <button type="button" (click)="reset()">Réinitialiser</button>
 </section>
