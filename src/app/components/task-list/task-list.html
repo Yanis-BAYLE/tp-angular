@@ -1,0 +1,50 @@
+<header class="page-header">
+  <p class="eyebrow">UN PEU PLUS D’ORDRE, UN PEU MOINS DE STRESS</p>
+  <h1>Mes tâches</h1>
+  <p>Organisez vos priorités et avancez à votre rythme.</p>
+</header>
+
+<mat-form-field appearance="outline" class="search-field">
+  <mat-label>Rechercher une tâche</mat-label>
+  <input matInput type="search" [(ngModel)]="searchQuery" />
+</mat-form-field>
+
+<section class="task-grid" aria-label="Liste des tâches">
+@for (task of filteredTasks; track task.id) {
+  <mat-card [class.completed]="task.isCompleted">
+    <div class="task-heading">
+      <span class="task-number">TÂCHE #{{ task.id }}</span>
+      <span class="task-status">{{ task.isCompleted ? 'Terminée' : 'À faire' }}</span>
+    </div>
+    <h2>{{ task.title }}</h2>
+    @switch (task.priority) {
+      @case ('haute') {
+        <p class="priority-high">Priorité: Haute</p>
+      }
+      @case ('moyenne') {
+        <p class="priority-medium">Priorité: Moyenne</p>
+      }
+      @case ('basse') {
+        <p class="priority-low">Priorité: Basse</p>
+      }
+      @default {
+        <p>Priorité invalide ou non renseigné</p>
+      }
+    }
+    @if (task.isCompleted) {
+      <img
+        ngSrc="assets/checkmark.png"
+        width="24"
+        height="24"
+        alt="Tâche terminée"
+        class="checkmark"
+      />
+    }
+    <button mat-button (click)="completeTask(task)" [disabled]="task.isCompleted">
+      {{ task.isCompleted ? 'Tâche terminée' : 'Marquer comme terminé' }}
+    </button>
+  </mat-card>
+} @empty {
+  <p class="empty-state" role="status">Aucune tâche trouvée. Essayez un autre titre.</p>
+}
+</section>

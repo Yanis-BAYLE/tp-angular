@@ -1,0 +1,23 @@
+<section aria-labelledby="sensor-title">
+  <h2 id="sensor-title">Sonde thermique</h2>
+
+  <p role="status" aria-live="polite">
+    Statut : <strong>{{ status() }}</strong>
+    @if (status() === 'Erreur') {
+      — Sonde en surchauffe
+    }
+  </p>
+  <p>
+    Température :
+    @if (sensorData$ | async; as temp) {
+      <strong>{{ temp }} °C</strong>
+    } @else {
+      <strong>—</strong>
+    }
+  </p>
+
+  <button type="button" (click)="start()" [disabled]="status() === 'Connecté'">Démarrer</button>
+  <button type="button" (click)="stop()" [disabled]="status() !== 'Connecté'">
+    Arrêter l'urgence
+  </button>
+</section>
