@@ -16,6 +16,8 @@ export const routes: Routes = [
   {
     path: 'productivity-tracker',
     loadComponent: () =>
-      import('./productivity-tracker/productivity-tracker').then((m) => m.ProductivityTracker),
+      import('./components/productivity-tracker/productivity-tracker').then(
+        (m) => m.ProductivityTracker,
+      ),
   },
 ];
